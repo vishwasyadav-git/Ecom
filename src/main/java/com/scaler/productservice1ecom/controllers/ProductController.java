@@ -18,12 +18,12 @@ public class ProductController {
 //    private String productServiceType;
     private ProductService productService;
 
-    private final WebClient webClient;
+
 //@Autowired
 //private  String name;
-    public  ProductController(@Qualifier("fakeStoreProductService") ProductService productService, WebClient webClient){
+    public  ProductController(@Qualifier("fakeStoreProductService") ProductService productService){
         this.productService=productService;
-        this.webClient = webClient;
+
     }
     @PostMapping("")
     public CreateProductResponseDto createProduct(@RequestBody CreateProductRequestDto createProductRequestDto){
@@ -65,29 +65,14 @@ public class ProductController {
             @PathVariable("id") Long productId,
             @RequestBody CreateProductDto productDto
             ){
-        // Update product using WebClient
-        Product product = webClient.patch()
-                .uri("/products/{id}", productId)
-                .bodyValue(productDto.toProduct())
-                .retrieve()
-                .bodyToMono(Product.class)
-                .onErrorResume(ex -> {
-                    // Log and return a fallback product
-                    System.err.println("API error: " + ex.getMessage());
-                    return Mono.just(new Product());
-                })
-                .block();
 
-        PatchProductResponseDto response = new PatchProductResponseDto();
+        Product product= productService.partialUpdateProject(
+                productId,
+                productDto.toProduct()
+        );
+        PatchProductResponseDto response=new PatchProductResponseDto();
         response.setProduct(GetProductDto.from(product));
         return response;
-//        Product product= productService.partialUpdateProject(
-//                productId,
-//                productDto.toProduct()
-//        );
-//        PatchProductResponseDto response=new PatchProductResponseDto();
-//        response.setProduct(GetProductDto.from(product));
-//        return response;
     }
     @PutMapping
     public  void  replaceProduct(){
@@ -98,4 +83,5 @@ public class ProductController {
 //    public String sampleTestForgeneric(){
 //        return "TestedCustom Vishwas Request from postman";
 //    }
+
 }

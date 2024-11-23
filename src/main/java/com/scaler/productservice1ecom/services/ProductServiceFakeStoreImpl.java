@@ -4,6 +4,7 @@ import com.scaler.productservice1ecom.dtos.fakeStore.FakeStoreCreateProductReque
 import com.scaler.productservice1ecom.dtos.fakeStore.FakeStoreGetProductResponseDto;
 import com.scaler.productservice1ecom.models.Product;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -70,4 +71,5 @@ public class ProductServiceFakeStoreImpl implements ProductService{
         );
         return response.toProduct();
     }
+
 }
