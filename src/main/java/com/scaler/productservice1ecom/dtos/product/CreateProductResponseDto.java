@@ -1,4 +1,4 @@
-package com.scaler.productservice1ecom.dtos;
+package com.scaler.productservice1ecom.dtos.product;
 
 import com.scaler.productservice1ecom.models.Product;
 import lombok.Getter;
