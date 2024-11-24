@@ -1,5 +1,6 @@
 package com.scaler.productservice1ecom.dtos.product;
 
+import com.scaler.productservice1ecom.models.Category;
 import com.scaler.productservice1ecom.models.Product;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +20,9 @@ public class CreateProductRequestDto {
         product.setDescription(this.description);
         product.setPrice(this.price);
         product.setImageUrl(this.imageUrl);
-        product.setCategoryName(this.categoryName);
+        Category category=new Category();
+        category.setName(categoryName);
+        product.setCategory(category);
         return product;
     }
 

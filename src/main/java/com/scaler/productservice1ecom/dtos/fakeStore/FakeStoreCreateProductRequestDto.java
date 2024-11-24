@@ -1,5 +1,6 @@
 package com.scaler.productservice1ecom.dtos.fakeStore;
 
+import com.scaler.productservice1ecom.models.Category;
 import com.scaler.productservice1ecom.models.Product;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +18,7 @@ public class FakeStoreCreateProductRequestDto {
         FakeStoreCreateProductRequestDto fakeStoreCreateProductRequestDto=new FakeStoreCreateProductRequestDto();
         fakeStoreCreateProductRequestDto.title= product.getTitle();
         fakeStoreCreateProductRequestDto.description= product.getDescription();
-        fakeStoreCreateProductRequestDto.category= product.getCategoryName();
+        fakeStoreCreateProductRequestDto.category= product.getCategory().getName();
         fakeStoreCreateProductRequestDto.price= product.getPrice();
         fakeStoreCreateProductRequestDto.image=product.getImageUrl();
 
