@@ -15,8 +15,8 @@ public class ExceptionsAdvices {
         return dto;
 
     }
-    @ExceptionHandler(RuntimeException.class)
-    public String handleException(){
-        return "something went wrong in controller";
-    }
+//    @ExceptionHandler(RuntimeException.class)
+//    public String handleException(){
+//        return "something went wrong in controller";
+//    }
 }

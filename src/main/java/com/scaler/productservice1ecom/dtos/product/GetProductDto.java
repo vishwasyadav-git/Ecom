@@ -10,7 +10,7 @@ import lombok.Setter;
 public class GetProductDto {
     private Long id;
     private String title;
-    private double price;
+    private Double price;
     private String description;
     private String image;
 
@@ -21,6 +21,7 @@ public class GetProductDto {
         getProductResponseDto.setDescription(product.getDescription());
         getProductResponseDto.setImage(product.getImageUrl());
         getProductResponseDto.setPrice(product.getPrice());
+        getProductResponseDto.setTitle(product.getTitle());
         return getProductResponseDto;
     }
 }

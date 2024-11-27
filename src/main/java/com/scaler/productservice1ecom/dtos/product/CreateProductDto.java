@@ -12,7 +12,7 @@ import java.util.Locale;
 public class CreateProductDto {
     private Long id;
     private String title;
-    private double price;
+    private Double price;
     private String description;
     private String image;
     private String categoryName;
