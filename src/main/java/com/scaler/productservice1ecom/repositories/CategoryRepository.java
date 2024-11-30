@@ -11,5 +11,8 @@ import java.util.Optional;
 public interface CategoryRepository extends JpaRepository<Category, Long> {
    Optional<Category> findByName(String name);
 
-    List<Category> findByIdGreaterThan(Long id);
+    //    List<Category> findByIdGreaterThanAndNameGreaterThan(
+//            Long id, String name);
+
+    Category save(Category category);
 }

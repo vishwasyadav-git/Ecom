@@ -62,20 +62,28 @@ public class ProductServiceDBImpl implements ProductService {
             productToUpdate.setTitle(product.getTitle());
         }
         if(product.getCategory()!=null){
-            String categoryName=product.getCategory().getName();
-            Optional<Category> category=
-                    categoryRepository.findByName(categoryName);
-            Category tobePutInProduct=null;
-            if(category.isEmpty()){
-                Category categoryToSave=new Category();
-                categoryToSave.setName(categoryName);
-                tobePutInProduct=categoryRepository.save(categoryToSave);
-            }else{
-                tobePutInProduct= category.get();
-            }
+            Category tobePutInProduct=getCategoryToBeInProduct(product);
             productToUpdate.setCategory(tobePutInProduct);
+
         }
         return productRepository.save(productToUpdate);
+    }
+    private Category getCategoryToBeInProduct(Product product) {
+        String categoryName = product.getCategory().getName();
+
+        Optional<Category> category =
+                categoryRepository.findByName(categoryName);
+        Category toBePutInProduct = null;
+
+        if (category.isEmpty()) {
+            Category toSaveCategory = new Category();
+            toSaveCategory.setName(categoryName);
+
+            toBePutInProduct = toSaveCategory;
+        } else {
+            toBePutInProduct = category.get();
+        }
+        return toBePutInProduct;
     }
 
 
